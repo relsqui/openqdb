@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -fN -L 3306:dbname:3306 username@host

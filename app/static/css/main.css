@@ -1,0 +1,151 @@
+/***********************************
+xkcdb.com styles
+do not copy or distribute unless you totally want to
+***********************************/
+
+
+/* globals */
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	font: 10pt sans-serif;
+	background: #eef;
+	color: black;
+}
+
+img {
+	border: 0;
+}
+
+a {
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color:#00f;
+}
+
+
+form {
+	display: inline;
+}
+
+/* misc */
+
+span#nagarrow {
+	float: right;
+	position: relative;
+	left: 17px;
+	top: -15px;
+	font-size: large;
+	font-weight: bold;
+	//color: #509f40;
+	color: #9f9070
+	z-index: 1;
+}
+
+div#nagbox {
+	position: relative;
+	left: 12px;
+	top: 2px;
+	//text-indent: 2em;
+	font-size: smaller;
+	float: right;
+	max-width: 140px;
+	background: #a0ff90;
+	//background: #f41;
+	//background: #90a0ff;
+	border: 2px #509f40 solid;
+	//border: 2px #40509f solid;
+	//border: 2px #9f9070 solid;
+	padding: 5px;
+	z-index: 0;
+}
+
+a:visited div#nagbox {
+	color: black
+}
+
+/* nav */
+
+div#menu {
+	width: 100%;
+	min-height: 28px;
+	text-align: right;
+}
+
+div#logo {
+	float: left;
+}
+
+#menu a {
+	margin: 0 2px;
+}
+
+#menu input{
+	margin-left: 2px;
+}
+
+
+/* content */
+
+div#content {
+	border: 1px #aaa solid;
+	padding: 0 1em 1em 1em;
+	background: white;
+	word-wrap: break-word;
+}
+
+#about,#support p {
+	text-indent: 1em;
+}
+
+span.quote {
+	font-family: monospace;
+}
+
+span.quotehead {
+	font-size: 11pt;
+}
+
+a.idlink {
+	font-weight: bolder;
+}
+
+a.uplink {
+	color: #0b0;
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+a.downlink {
+	color: #d00;
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+span.novote {
+	font-size: 14pt;
+	color: #ccc;
+}
+
+/* pagination */
+
+p.pagination {
+	font-size: 12pt;
+	text-align: center;
+}
+span.pageno {
+	font-size: 10pt;
+}
+
+span.nopage {
+	color: #ccc;
+}

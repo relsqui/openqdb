@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+        <title>?!?!</title>
+    </head>
+    <body>
+        <div id="menu">
+            <div id="logo">
+                <a href="{{ url_for('home') }}">Home</a>
+            </div>
+            <a href="{{ url_for('about') }}">About</a> |
+            <a href="{{ url_for('submit') }}">Submit</a> |
+            Stuff | Things | Etc
+            {#
+            <a href="{{ url_for('pending') }}">Newest</a> |
+            <a href="{{ url_for('newest') }}">New</a> |
+            <a href="{{ url_for('top') }}">Top</a> (<a href="{{ url_for('recent') }}">Recent</a>) |
+            <a href="{{ url_for('random') }}">Random</a> (<a href="{{ url_for('random0') }}">&gt;0</a>)
+            #}
+        </div>
+        <div id="content">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+import os
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+# WTForms settings
+CSRF_ENABLED = True
+SECRET_KEY = "my-secret-key"
+
+# SQLAlchemy settings
+SQLALCHEMY_DATABASE_URI = "mysql://user:password@server/database"
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, "db_repository")

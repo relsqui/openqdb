@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>How to get your quote approved:</p>
+<ul>
+    <li><b>Remove timestamps</b>, laughter, interruptions, parts/joins, and other things which aren't required for the quote to be funny (do not actively improve it).</li>
+    <li>If conveying the humor of the quote requires adding a preface explaining its context, don't bother submitting it.</li>
+    <li>On rare occasions when you need to indicate a time gap between parts of a quote, just use a single blank line.</li>
+</ul>
+<p>If you like, you can enter your nick below the quote. This won't be publicly visible and doesn't affect quote approval.</p>
+<form action="" method="post" name="submit">
+    {{form.hidden_tag()}}
+    {% for error in form.errors.quote %}
+    <span style="color: red; font-weight: bold">{{error}}</span><br />
+    {% endfor %}
+    {{form.quote(rows=20, cols=100)}}<br />
+    Your Nick: {{form.submitter}}
+    <input type="submit" value="Submit Quote" />
+</form>
+{% endblock %}
