@@ -2,15 +2,15 @@
 {% block content %}
     <p class="pagination">
         {% if quotes.has_prev %}
-            <a href="/">&#8676;</a>
-            <a href="/page/{{quotes.prev_num}}">&larr;</a>
+        <a href="{{ url_for('home') }}">&#8676;</a>
+            <a href="{{ url_for('home', page = quotes.prev_num) }}">&larr;</a>
         {% else %}
             <span class="nopage">&#8676; &larr;</span>
         {% endif %}
         <span class="pageno">{{quotes.page}} of {{quotes.pages}}</span>
         {% if quotes.has_next %}
-            <a href="/page/{{quotes.next_num}}">&rarr;</a>
-            <a href="/page/{{quotes.pages}}">&#8677;</a>
+            <a href="{{ url_for('home', page = quotes.next_num) }}">&rarr;</a>
+            <a href="{{ url_for('home', page = quotes.pages) }}">&#8677;</a>
         {% else %}
             <span class="nopage">&rarr; &#8677;</span>
         {% endif %}

@@ -5,8 +5,9 @@ from app import app, forms, db
 from app.models import Quotes
 from config import POSTS_PER_PAGE
 
-@app.route("/")
+@app.route("/newest")
 @app.route("/page/<int:page>")
+@app.route("/")
 def home(page = 1):
     quotes = Quotes.query.order_by(desc(Quotes.id)).paginate(page, POSTS_PER_PAGE, False)
     return render_template("quotes.html", quotes = quotes)
