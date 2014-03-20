@@ -12,7 +12,8 @@
             <a href="{{ url_for('about') }}">About</a> |
             <a href="{{ url_for('submit') }}">Submit</a> |
             <a href="{{ url_for('home') }}">New</a> |
-            Top (Recent) | Random >0 | Search | RSS | Bananas | $
+            <a href="{{ url_for('top') }}">Top</a>
+            (Recent) | Random >0 | Search | RSS | Bananas | $
         </div>
         <div id="content">
             {% with messages = get_flashed_messages() %}

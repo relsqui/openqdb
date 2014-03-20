@@ -5,12 +5,22 @@ from app import app, forms, db
 from app.models import Quotes
 from config import POSTS_PER_PAGE
 
+def render_quotes(query, source, page = 1):
+    quotes = query.paginate(page, POSTS_PER_PAGE, False)
+    return render_template("quotes.html", source = source, quotes = quotes)
+
 @app.route("/newest")
 @app.route("/page/<int:page>")
 @app.route("/")
 def home(page = 1):
-    quotes = Quotes.query.order_by(desc(Quotes.id)).paginate(page, POSTS_PER_PAGE, False)
-    return render_template("quotes.html", quotes = quotes)
+    query = Quotes.query.order_by(desc(Quotes.id))
+    return render_quotes(query, "home", page)
+
+@app.route("/top")
+@app.route("/top/page/<int:page>")
+def top(page = 1):
+    query = Quotes.query.order_by(desc(Quotes.bayesian))
+    return render_quotes(query, "top", page)
 
 @app.route("/about")
 def about():
