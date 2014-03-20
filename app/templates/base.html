@@ -5,26 +5,9 @@
         <title>Flask XKCDB</title>
     </head>
     <body>
-        <div id="menu">
-            <div id="logo">
-                <a href="{{ url_for('home') }}">Home</a>
-            </div>
-            <a href="{{ url_for('about') }}">About</a> |
-            <a href="{{ url_for('submit') }}">Submit</a> |
-            <a href="{{ url_for('home') }}">New</a> |
-            <a href="{{ url_for('top') }}">Top</a>
-            (Recent) | Random >0 | Search | RSS | Bananas | $
-        </div>
+        {% include "menu.html" %}
         <div id="content">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
+            {% include "alerts.html" %}
             {% block content %}
             {% endblock %}
         </div>

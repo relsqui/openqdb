@@ -1,0 +1,11 @@
+<p class="quoteblock">
+    <span class="quotehead">
+        <a href="{{quote.id}}" class="idlink" name="{{quote.id}}">#{{quote.id}}</a>
+        <a href="upvote={{quote.id}}#{{quote.id}}" class="uplink">&#8679;</a>
+        (+{{quote.upvotes|int}}/-{{quote.downvotes|int}})
+        <a href="downvote={{quote.id}}#{{quote.id}}" class="downlink">&#8681;</a>
+    </span><br />
+    <span class="quote">
+        {{quote.quote.replace('<', '&lt;').replace('\n', '<br />')|safe}}
+    </span>
+</p>

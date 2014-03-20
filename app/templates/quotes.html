@@ -1,31 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-            <p class="pagination">
-                {% if quotes.has_prev %}
-                <a href="{{ url_for(source) }}">&#8676;</a>
-                <a href="{{ url_for(source, page = quotes.prev_num) }}">&larr;</a>
-                {% else %}
-                <span class="nopage">&#8676; &larr;</span>
-                {% endif %}
-                <span class="pageno">{{quotes.page}} of {{quotes.pages}}</span>
-                {% if quotes.has_next %}
-                <a href="{{ url_for(source, page = quotes.next_num) }}">&rarr;</a>
-                <a href="{{ url_for(source, page = quotes.pages) }}">&#8677;</a>
-                {% else %}
-                <span class="nopage">&rarr; &#8677;</span>
-                {% endif %}
-            </p>
-            {% for quote in quotes.items %}
-            <p class="quoteblock">
-                <span class="quotehead">
-                    <a href="{{quote.id}}" class="idlink" name="{{quote.id}}">#{{quote.id}}</a>
-                    <a href="upvote={{quote.id}}#{{quote.id}}" class="uplink">&#8679;</a>
-                    (+{{quote.upvotes|int}}/-{{quote.downvotes|int}})
-                    <a href="downvote={{quote.id}}#{{quote.id}}" class="downlink">&#8681;</a>
-                </span><br />
-                <span class="quote">
-                    {{quote.quote.replace('<', '&lt;').replace('\n', '<br />')|safe}}
-                </span>
-            </p>
+    {% include "pagebuttons.html" %}
+    {% for quote in quotes.items %}
+        {% include "onequote.html" %}
     {% endfor %}
+    {% include "pagebuttons.html" %}
 {% endblock %}
