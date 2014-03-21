@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+    {% block daterange %}
+    {% endblock %}
     {% include "pagebuttons.html" %}
     {% for quote in quotes.items %}
         {% include "onequote.html" %}
