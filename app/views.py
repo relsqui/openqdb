@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from sqlalchemy import desc
 
 from app import app, forms, db
@@ -11,6 +11,11 @@ def render_quotes(query, source, page = 1):
     quotes = query.paginate(page, POSTS_PER_PAGE, False)
     return render_template("quotes.html", source = source, quotes = quotes)
 
+@app.route("/<int:quote>")
+def quote(quote):
+    query = Quotes.query.filter_by(id = quote)
+    return render_quotes(query, "home", 1)
+
 @app.route("/about")
 def about():
     return render_template("about.html")
@@ -19,6 +24,9 @@ def about():
 @app.route("/page/<int:page>")
 @app.route("/")
 def home(page = 1):
+    numeric_queries = [k for k in request.args.keys() if k.isdigit()]
+    if numeric_queries:
+        return quote(numeric_queries[0])
     query = Quotes.query.filter_by(pending = False).order_by(desc(Quotes.id))
     return render_quotes(query, "home", page)
 
