@@ -8,3 +8,6 @@ class QuoteSubmission(Form):
 
 class DateRange(Form):
     days = IntegerField("days", default = 14)
+
+class Search(Form):
+    needle = StringField("needle")

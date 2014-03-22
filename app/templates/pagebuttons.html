@@ -1,15 +1,15 @@
 <p class="pagination">
     {% if quotes.pages > 1 %}
         {% if quotes.has_prev %}
-            <a href="{{ url_for(source) }}">&#8676;</a>
-            <a href="{{ url_for(source, page = quotes.prev_num) }}">&larr;</a>
+            <a href="{{ url_for(request.endpoint, **old_args) }}">&#8676;</a>
+            <a href="{{ url_for(request.endpoint, page = quotes.prev_num, **old_args) }}">&larr;</a>
         {% else %}
             <span class="nopage">&#8676; &larr;</span>
         {% endif %}
         <span class="pageno">{{quotes.page}} of {{quotes.pages}}</span>
         {% if quotes.has_next %}
-            <a href="{{ url_for(source, page = quotes.next_num) }}">&rarr;</a>
-            <a href="{{ url_for(source, page = quotes.pages) }}">&#8677;</a>
+            <a href="{{ url_for(request.endpoint, page = quotes.next_num, **old_args) }}">&rarr;</a>
+            <a href="{{ url_for(request.endpoint, page = quotes.pages, **old_args) }}">&#8677;</a>
         {% else %}
             <span class="nopage">&rarr; &#8677;</span>
         {% endif %}
