@@ -6,6 +6,6 @@
         <a href="{{quote.id}}" class="downlink">&#8681;</a>
     </span><br />
     <span class="quote">
-        {{quote.quote.replace('<', '&lt;').replace('\n', '<br />')|safe}}
+        {{quote.quote.replace('<', '&lt;').replace('\n', '<br />').replace('@', '&#64;')|safe|urlize}}
     </span>
 </p>
