@@ -7,11 +7,13 @@
     <a href="{{ url_for('home') }}">New</a> |
     <a href="{{ url_for('top') }}">Top</a>
     (<a href="{{ url_for('recent') }}">Recent</a>) |
-    Random >0 |
+    <a href="{{ url_for('randomquote') }}">Random</a>
+    <a href="{{ url_for('goodrandomquote') }}">>0</a> |
     <form action="{{ url_for('splitsearch') }}" method="post" name="search">
         {{searchform.hidden_tag()}}
         {{searchform.needle(size = 8)}}
         <input type="submit" value="Go" />
     </form> |
-    RSS | Bananas | $
+    <a href="{{ RSS_LINK }}">RSS</a> |
+    Bananas | $
 </div>

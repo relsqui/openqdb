@@ -1,21 +1,23 @@
 from datetime import datetime, timedelta
 from flask import render_template, flash, redirect, url_for, request
 from sqlalchemy import desc
+from sqlalchemy.sql.expression import func
 
 from app import app, forms, db
 from app.models import Quotes
-from config import POSTS_PER_PAGE
+from config import POSTS_PER_PAGE, RSS_LINK
 
 
-def render_quotes(query, page = 1, bayesian_sort = True, template = "quotes.html", **kwargs):
-    quotes = query.filter_by(pending = False)
+def render_quotes(quotes, page = 1, filter_pending = True, bayesian_sort = True, template = "quotes.html", **kwargs):
+    if filter_pending:
+        quotes = quotes.filter_by(pending = False)
     if bayesian_sort:
         quotes = quotes.order_by(desc(Quotes.bayesian))
     quotes = quotes.paginate(page, POSTS_PER_PAGE, False)
     old_args = dict(request.view_args)
     if "page" in old_args:
         del old_args["page"]
-    return render_template(template, quotes = quotes, searchform = forms.Search(), old_args = old_args, **kwargs)
+    return render_template(template, quotes = quotes, searchform = forms.Search(), old_args = old_args, RSS_LINK = RSS_LINK, **kwargs)
 
 @app.route("/<int:quote>")
 def onequote(quote):
@@ -69,6 +71,15 @@ def recent(page = None, days = None):
     quotes = Quotes.query.filter(Quotes.date > datetime.now() - timedelta(days))
     return render_quotes(quotes, page, template = "recent.html", days = days, form = form)
 
+@app.route("/random")
+def randomquote():
+    quotes = Quotes.query.filter_by(pending = False).order_by(func.rand()).limit(POSTS_PER_PAGE).from_self()
+    return render_quotes(quotes, filter_pending = False, bayesian_sort = False)
+
+@app.route("/random1")
+def goodrandomquote():
+    quotes = Quotes.query.filter_by(pending = False).filter(Quotes.upvotes > Quotes.downvotes).order_by(func.rand()).limit(POSTS_PER_PAGE).from_self()
+    return render_quotes(quotes, filter_pending = False, bayesian_sort = False)
 
 @app.route("/search", methods = ['GET', 'POST'])
 def splitsearch():
