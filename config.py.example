@@ -4,8 +4,15 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 # WTForms settings
 CSRF_ENABLED = True
-SECRET_KEY = "my-secret-key"
+SECRET_KEY = "your_secret_key_here"
 
 # SQLAlchemy settings
 SQLALCHEMY_DATABASE_URI = "mysql://user:password@server/database"
+#SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, "app.db")
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, "db_repository")
+
+# Pagination
+POSTS_PER_PAGE = 50
+
+# Other Settings
+RSS_LINK = "http://your.domain/feed.xml"
